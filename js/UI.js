@@ -50,5 +50,10 @@ export class ui{
         <a class="btn btn-outline-warning" target="_blank" href="${game.game_url}">Show Game</a>
      </div>`;
      document.getElementById("detailsContent").innerHTML =container;
+     document.getElementById("btnClose").addEventListener("click", () => {
+        document.querySelector(".landing-page").classList.remove("d-none");
+        document.querySelector(".details").classList.add("d-none");
+     });
     }
+
 }

@@ -1,4 +1,6 @@
 import { ui } from "./UI.js";
+import { Details } from "./details.js";
+
 
 export class Home{
     constructor(){
@@ -15,14 +17,16 @@ export class Home{
                 this.getGamesByCategory(e.target.dataset.category);
             });
         });
+        /* creating new instance of ui to display the cards */
         this.ui = new ui();
     }
 
     /* main query function */
     async getGamesByCategory(category){
 
-        /* add loading effect here */
-
+        /* loading effect*/
+        let loading = document.querySelector(".loading");
+        loading.classList.remove("d-none");
         /* url for api with parameters passed by the function */
         let url = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${category}`;
         const options = {
@@ -35,9 +39,28 @@ export class Home{
 
         let response = await fetch(url, options);
         let finalresponse = await response.json();
-        console.log(finalresponse);
-        /* send final response somewhere for actions */
-
+     
+        /* creates the cards layout and display game data from final response */
         this.ui.displayGameCard(finalresponse);
+        /* adds the event that shows details tab */
+        this.addDetailsEvent();
+        /* removes loading after func is done */
+        loading.classList.add("d-none");
+
+    }
+
+    /* function to add event listener to all cards so that when clicked details shows up */
+    addDetailsEvent(){
+        document.querySelectorAll(".card").forEach((item)=>{
+            item.addEventListener("click", ()=>{
+                this.showDetails(item.dataset.id)
+            });
+        });
+    }
+
+    showDetails(gameID){
+        let details = new Details(gameID);
+        document.querySelector(".landing-page").classList.add("d-none");
+        document.querySelector(".details").classList.remove("d-none");
     }
 }
