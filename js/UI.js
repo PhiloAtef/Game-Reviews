@@ -1,6 +1,9 @@
 export class ui{
+    /* function to display the cards tileset */
     displayGameCard(games){
+        /* container for the html to passed off */
         let container = ``;
+        /* for loop to iterate over every game and add it to a card */
         for (let i = 0; i < games.length; i++) {
             container+= ` 
             <div class="col">
@@ -35,8 +38,10 @@ export class ui{
          </div>
          `;
         }
+        /* adding the html inside it's designated area outlined by the gameData Id */
         document.getElementById("gameData").innerHTML = container;
     }
+    /* function for the details page html */
     displayDetails(game){
         let container = `<div class="col-md-4">
         <img src="${game.thumbnail}" class="w-100" alt="image details" />
@@ -50,6 +55,8 @@ export class ui{
         <a class="btn btn-outline-warning" target="_blank" href="${game.game_url}">Show Game</a>
      </div>`;
      document.getElementById("detailsContent").innerHTML =container;
+
+     /* closing buttion functionality event listener */
      document.getElementById("btnClose").addEventListener("click", () => {
         document.querySelector(".landing-page").classList.remove("d-none");
         document.querySelector(".details").classList.add("d-none");

@@ -37,9 +37,10 @@ export class Home{
 	        }
         };
 
+        /* fetching data from api endpoint */
         let response = await fetch(url, options);
+        /* translating it from string to json */
         let finalresponse = await response.json();
-     
         /* creates the cards layout and display game data from final response */
         this.ui.displayGameCard(finalresponse);
         /* adds the event that shows details tab */
@@ -58,6 +59,7 @@ export class Home{
         });
     }
 
+    /* function to display the details page and populate it with data from the function getdetails inside Details class */
     showDetails(gameID){
         let details = new Details(gameID);
         document.querySelector(".landing-page").classList.add("d-none");
