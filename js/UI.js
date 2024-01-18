@@ -4,7 +4,7 @@ export class ui{
         for (let i = 0; i < games.length; i++) {
             container+= ` 
             <div class="col">
-            <div data-id="${games[i].id}"  class="card h-100 bg-transparent" role="button" ">
+            <div data-id="${games[i].id}"  class="card h-100 bg-transparent" role="button" >
                <div  class="card-body">
                   <figure class="position-relative">
                      <img class="card-img-top object-fit-cover h-100" src="${games[i].thumbnail}" />
@@ -19,7 +19,7 @@ export class ui{
                      </div>
       
                      <p class="card-text small text-center opacity-50">
-                        ${games[i].short_description.split(" ", 8)}
+                        ${games[i].short_description}
                      </p>
       
                   </figcaption>
